@@ -1,0 +1,9 @@
+.add-task-form {
+    margin-top: 60px;
+    justify-content: center;
+}
+form.add-task-form input {
+    max-width: 500px;
+    width: 100%;
+    margin-right: 20px;
+}

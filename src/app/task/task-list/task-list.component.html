@@ -1,0 +1,30 @@
+<div class="todo-wrap">
+    <div class="row" class="">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a href="javascript:;" (click)="changeTab('tab1')" class="nav-link" [ngClass]="{ active: this.showTab === 'tab1' }">All</a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" (click)="changeTab('tab2')" class="nav-link" [ngClass]="{ active: this.showTab === 'tab2' }">Active</a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" (click)="changeTab('tab3')" class="nav-link" [ngClass]="{ active: this.showTab === 'tab3' }">Completed</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div [ngSwitch]="showTab">
+                <div *ngSwitchCase="'tab1'">
+                    <app-all-tasks></app-all-tasks>
+                </div>
+                <div *ngSwitchCase="'tab2'">
+                    <app-active-tasks></app-active-tasks>
+                </div>
+                <div *ngSwitchCase="'tab3'">
+                    <app-completed-tasks></app-completed-tasks>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

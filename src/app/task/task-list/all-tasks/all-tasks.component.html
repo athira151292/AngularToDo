@@ -1,0 +1,10 @@
+<div class="all-tasks">
+    <ul>
+        <li *ngFor="let task of tasks" class="list-unstyled">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck{{task.id}}" [checked]="task.completedStatus">
+                <label class="custom-control-label" for="customCheck{{task.id}}">{{task.name}}</label>
+            </div>
+        </li>
+    </ul>
+</div>
