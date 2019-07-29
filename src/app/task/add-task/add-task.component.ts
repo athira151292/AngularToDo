@@ -1,25 +1,27 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+
+import { TaskService } from './../taskService';
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css']
+  styleUrls: ['./add-task.component.css'],
 })
+
 export class AddTaskComponent implements OnInit {
 
   public taskName : string;
-  @Output() public taskEvent = new EventEmitter();
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit() {
-    console.log("ngOnInit");
   }
 
-  addTask(name) {
-    this.taskEvent.emit(name.value);
-    this.taskName = name.value;
-    name.value = "";
+  onAddTask(inputValue) {
+    var value = inputValue.value;
+    this.taskService.getInputValue.emit(value);
+    inputValue.value = "";
   }
 
 }

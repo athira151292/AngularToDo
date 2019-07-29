@@ -11,6 +11,8 @@ import { CompletedTasksComponent } from './task/task-list/completed-tasks/comple
 import { ActiveTasksComponent } from './task/task-list/active-tasks/active-tasks.component';
 import { AddTaskComponent } from './task/add-task/add-task.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
+import { TaskService } from './task/taskService';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { TaskListComponent } from './task/task-list/task-list.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
