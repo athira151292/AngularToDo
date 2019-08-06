@@ -1,0 +1,4 @@
+<div class="custom-control custom-checkbox task-wrap">
+    <input type="checkbox" class="custom-control-input" id="customCheck{{task.id}}" [(ngModel)]="task.completedStatus" (change)="onCompleted()">
+    <label class="custom-control-label" for="customCheck{{task.id}}">{{task.name}}</label>
+</div>

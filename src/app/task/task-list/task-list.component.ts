@@ -1,4 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+
+import { Task } from './../task.model';
+
+import { TaskService } from './../taskService';
 
 @Component({
   selector: 'app-task-list',
@@ -7,30 +12,41 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
-  @Input() public title: string;
-  public showTab: string = "tab1";
+  tasks: Task[];
 
-  constructor() {
-  }
+  constructor(private taskService: TaskService) {
+    if(JSON.parse(localStorage.getItem("task")) != null) 
+      this.tasks = this.taskService.getTask();
+    else 
+      this.tasks = [];
+    this.taskService.getInputValue.subscribe(
+        (value: string) => {
+            let taskId;
+            let taskArr = this.tasks;
+            let taskLength = taskArr.length;
+            if(taskLength != 0) 
+              taskId = taskArr[taskLength - 1].id + 1;
+            else 
+              taskId = 0;
+              taskArr.push({name: value,id: taskId,completedStatus: false});
+           this.taskService.setTask(taskArr);
+        }
+    );
+    this.taskService.onCompletedTask.subscribe(
+      (value: Task) => {
+        let taskArr = this.tasks;
+        let taskLength = taskArr.length;
+        for(let i=0; i<taskLength; i++) {
+          if(taskArr[i].id == value.id) {
+            taskArr[i].completedStatus = value.completedStatus;
+          }
+        }
+        this.taskService.setTask(taskArr);
+      }
+    )
+  } 
 
   ngOnInit() {
-  }
-
-  changeTab(tab) {
-      switch(tab) {
-          case "tab1": {
-              this.showTab = "tab1";
-              break;
-          }
-          case "tab2": {
-              this.showTab = "tab2";
-              break;
-          }
-          case "tab3": {
-              this.showTab = "tab3";
-              break;
-          }
-      }
   }
 
 }

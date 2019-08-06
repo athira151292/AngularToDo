@@ -1,0 +1,13 @@
+.task-wrap {
+    border-bottom: 1px solid #ebebeb;
+    padding: 10px 0;
+}
+
+.task-wrap .custom-control-label {
+    padding-left: 40px;
+}
+
+.task-wrap .custom-control-label:before,
+.task-wrap .custom-control-label:after {
+    left: 12px;
+}

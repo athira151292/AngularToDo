@@ -1,1 +1,5 @@
-<p>completed-tasks works!</p>
+<div class="todo-wrap">
+    <app-task-item 
+    *ngFor="let taskItem of completedTasks" 
+    [task]="taskItem"></app-task-item>
+</div>

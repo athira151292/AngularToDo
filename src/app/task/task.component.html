@@ -1,8 +1,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <app-add-task (taskEvent)="onCreateTask($event)" #addTaskContent></app-add-task>
+            <app-add-task></app-add-task>
         </div>
     </div>
-    <app-task-list [title]="value"></app-task-list>
+    <router-outlet></router-outlet>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group d-flex justify-content-center classify-btn-wrap mx-auto" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary mr-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">All</button>
+                <button type="button" class="btn btn-primary mr-2" routerLink="/active-tasks" routerLinkActive="active">Active</button>
+                <button type="button" class="btn btn-primary" [routerLink]="['/completed-tasks']" routerLinkActive="active">Completed</button>
+            </div>
+        </div>
+    </div>
 </div>
