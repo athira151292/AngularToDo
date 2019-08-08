@@ -16,35 +16,23 @@ export class ActiveTasksComponent {
     activeTasks: Task[] = [];
 
     constructor(private taskService: TaskService) {
+        this.activeTasks = this.taskService.getActiveTasks();
         let tasks: Task[] = this.taskService.getTask();
-        this.updateActiveTasks(tasks);
-        this.taskService.onCompletedTask.subscribe(
-            (value: Task) => {
-                console.log(tasks);
-                this.taskService.setTask(tasks);
-                this.updateActiveTasks(tasks);
+        this.taskService.updateActiveTasks(tasks);
+        this.taskService.getInputValue.subscribe(
+            (value: string) => {
+                this.activeTasks = this.taskService.getActiveTasks();
             }
         )
-        this.taskService.onDeleteTask.subscribe(
-            (value: Task) => {
-              let taskLength = tasks.length;
-              for(let i=0; i<taskLength; i++) {
-                if(tasks[i].id == value.id) {
-                    tasks.splice(i, 1);
-                  this.taskService.setTask(tasks);
-                }
-              }
-              this.updateActiveTasks(tasks);
+        this.taskService.onDelete.subscribe(
+            () => {
+                this.activeTasks = this.taskService.getActiveTasks();
+            }
+        )
+        this.taskService.onChangeTaskStatus.subscribe(
+            () => {
+                this.activeTasks = this.taskService.getActiveTasks();
             }
         )
     }
-
-    updateActiveTasks(tasks) {
-        this.activeTasks=[];
-        for(let i=0;i<tasks.length;i++) {
-            if(tasks[i].completedStatus === false)
-                this.activeTasks.push(tasks[i]);
-        }
-    }
-
 }

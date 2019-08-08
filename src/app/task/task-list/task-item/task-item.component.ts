@@ -18,15 +18,16 @@ export class TaskItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        
     }
     
-    onCompleted() {
-        this.taskService.onCompletedTask.emit(this.task);
+    onStatusChange() {
+        this.taskService.onChangeStatus();
+        this.taskService.onChangeTaskStatus.emit();
     }
 
     onDelete() {
-        this.taskService.onDeleteTask.emit(this.task);
+        this.taskService.onDeleteTask(this.task);
+        this.taskService.onDelete.emit();
     }
     
 }

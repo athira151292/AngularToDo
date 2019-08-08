@@ -22,6 +22,7 @@ export class AddTaskComponent implements OnInit {
     if(($event.type === "keydown" && $event.keyCode === 13) || $event.type === "click") {
         var value = inputValue.value;
       if(value !== "")
+        this.taskService.onTaskAdded(value);
         this.taskService.getInputValue.emit(value);
       inputValue.value = "";
     }

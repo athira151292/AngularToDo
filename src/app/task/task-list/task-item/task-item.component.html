@@ -1,5 +1,5 @@
 <div class="custom-control custom-checkbox task-wrap d-flex justify-content-between align-items-center">
-    <input type="checkbox" class="custom-control-input" id="customCheck{{task.id}}" [(ngModel)]="task.completedStatus" (change)="onCompleted()">
+    <input type="checkbox" class="custom-control-input" id="customCheck{{task.id}}" [(ngModel)]="task.completedStatus" (change)="onStatusChange()">
     <label class="custom-control-label" for="customCheck{{task.id}}">{{task.name}}</label>
     <img src="../../../../assets/images/delete.png" class="delete-icon" (click)="onDelete()">
 </div>
