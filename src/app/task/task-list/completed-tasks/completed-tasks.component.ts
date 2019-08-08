@@ -24,6 +24,18 @@ export class CompletedTasksComponent {
                 this.updateCompletedTasks(tasks);
             }
         )
+        this.taskService.onDeleteTask.subscribe(
+            (value: Task) => {
+              let taskLength = tasks.length;
+              for(let i=0; i<taskLength; i++) {
+                if(tasks[i].id == value.id) {
+                    tasks.splice(i, 1);
+                  this.taskService.setTask(tasks);
+                }
+              }
+              this.updateCompletedTasks(tasks);
+            }
+        )
     }
 
     updateCompletedTasks(tasks) {

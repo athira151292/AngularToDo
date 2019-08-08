@@ -44,6 +44,18 @@ export class TaskListComponent implements OnInit {
         this.taskService.setTask(taskArr);
       }
     )
+    this.taskService.onDeleteTask.subscribe(
+      (value: Task) => {
+        let taskArr = this.tasks;
+        let taskLength = taskArr.length;
+        for(let i=0; i<taskLength; i++) {
+          if(taskArr[i].id == value.id) {
+            taskArr.splice(i, 1);
+            this.taskService.setTask(taskArr);
+          }
+        }
+      }
+    )
   } 
 
   ngOnInit() {

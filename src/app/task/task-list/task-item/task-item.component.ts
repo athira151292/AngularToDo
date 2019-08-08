@@ -24,5 +24,9 @@ export class TaskItemComponent implements OnInit {
     onCompleted() {
         this.taskService.onCompletedTask.emit(this.task);
     }
+
+    onDelete() {
+        this.taskService.onDeleteTask.emit(this.task);
+    }
     
 }

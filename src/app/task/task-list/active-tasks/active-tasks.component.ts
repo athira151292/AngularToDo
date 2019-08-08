@@ -25,6 +25,18 @@ export class ActiveTasksComponent {
                 this.updateActiveTasks(tasks);
             }
         )
+        this.taskService.onDeleteTask.subscribe(
+            (value: Task) => {
+              let taskLength = tasks.length;
+              for(let i=0; i<taskLength; i++) {
+                if(tasks[i].id == value.id) {
+                    tasks.splice(i, 1);
+                  this.taskService.setTask(tasks);
+                }
+              }
+              this.updateActiveTasks(tasks);
+            }
+        )
     }
 
     updateActiveTasks(tasks) {

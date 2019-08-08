@@ -11,3 +11,8 @@
 .task-wrap .custom-control-label:after {
     left: 12px;
 }
+
+.delete-icon {
+    width: 28px;
+    height: 28px;
+}
